@@ -1,0 +1,38 @@
+syntax="proto3";
+
+package proto;
+
+option java_multiple_files = true;
+option java_package = "proto";
+option java_outer_classname = "Student";
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloRespose {
+    int32 id = 1;
+}
+
+message StudentId {
+    int32 id = 1;
+}
+
+message StudentDo {
+    string name = 1;
+    int32 age = 2;
+}
+
+message StudentDoList {
+    repeated StudentDo student = 1;
+}
+
+service StudentService {
+    rpc GetIdByName(HelloRequest) returns (HelloRespose) {}
+
+    rpc GetStudentsById(StudentId) returns (stream StudentDo) {}
+
+    rpc GetStudentsByIds(stream StudentId) returns (StudentDoList) {}
+
+    rpc BioTalk(stream StudentId) returns (stream StudentDo) {}
+}
