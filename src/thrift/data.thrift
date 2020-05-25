@@ -1,4 +1,4 @@
-namespace java thrift.f
+namespace java org.example.f
 
 struct Person{
     1: optional i32 age,
